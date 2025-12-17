@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ClickerBot" load_steps=3 format=3 uid="uid://do12c8qdr0358"]
+
+[ext_resource type="PackedScene" uid="uid://bdms20ggb1wj1" path="res://scenes/click_bot.tscn" id="1_0ipux"]
+[ext_resource type="Script" uid="uid://k80r8i6jjsri" path="res://src/scripts/bots/clicker_bot.gd" id="1_gu0dv"]
+
+[resource]
+script = ExtResource("1_gu0dv")
+passive_rate = 0.3
+clicker_scene = ExtResource("1_0ipux")
+name = "clicker"
+description = "Increases passive rate by 0.3"
+price_increase = 0.05
+metadata/_custom_type_script = "uid://k80r8i6jjsri"

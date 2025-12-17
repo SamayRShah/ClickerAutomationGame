@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ClickerBotHelper" load_steps=2 format=3 uid="uid://cpw7ktjwbiqfo"]
+
+[ext_resource type="Script" uid="uid://dxfhc0ljhnq06" path="res://src/scripts/bots/clicker_bot_helper.gd" id="1_e5txy"]
+
+[resource]
+script = ExtResource("1_e5txy")
+passive_multiplier = 0.3
+name = "Clicker Booster"
+description = "Increases passive multiplier by 0.3"
+metadata/_custom_type_script = "uid://dxfhc0ljhnq06"

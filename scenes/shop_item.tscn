@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgp1ljcfboph3"]
+
+[ext_resource type="Script" uid="uid://bupqa0tst8dsn" path="res://src/scripts/shop_item.gd" id="1_btjjm"]
+[ext_resource type="Texture2D" uid="uid://2basnmwdsp40" path="res://icon.svg" id="1_lrx6i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je3rv"]
+bg_color = Color(0.194349, 0.194349, 0.194349, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0nslb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btjjm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.105882354, 0.3372549, 0.65882355, 0.68235296)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gmg1"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.105882354, 0.3372549, 0.65882355, 0.68235296)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcw7k"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.028085737, 0.15210491, 0.3249116, 0.68235296)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1d7d6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 5
+
+[node name="ShopItem" type="PanelContainer"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 271.0
+offset_bottom = 138.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_je3rv")
+script = ExtResource("1_btjjm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_lrx6i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Upgrade Clicker"
+
+[node name="Price" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10 points"
+
+[node name="Description" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Upgrades clicks per second"
+
+[node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0nslb")
+flat = true
+
+[node name="AutomateButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_btjjm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btjjm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6gmg1")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_xcw7k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btjjm")
+text = "Automate"
+
+[node name="AutomatedPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1d7d6")
+
+[node name="MarginContainer" type="MarginContainer" parent="AutomatedPanel"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="Label" type="Label" parent="AutomatedPanel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Automated"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="AutomateButton" to="." method="_on_automate_button_pressed"]

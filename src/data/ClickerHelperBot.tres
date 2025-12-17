@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ClickerHelperBot" load_steps=2 format=3 uid="uid://cq1s48ksue3t5"]
+
+[ext_resource type="Script" uid="uid://twab2aevy18q" path="res://src/scripts/bots/clicker_helper_bot.gd" id="1_wb8oe"]
+
+[resource]
+script = ExtResource("1_wb8oe")
+name = "Clicker Helper"
+description = "increase click points by 20%"
+price_increase = 0.1
+metadata/_custom_type_script = "uid://beergh0k14rvf"

@@ -1,0 +1,231 @@
+[gd_scene load_steps=12 format=3 uid="uid://mhkb8mujkdyy"]
+
+[ext_resource type="Script" uid="uid://c6joty6udbng0" path="res://src/scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Resource" uid="uid://brsmgq1o0ty3y" path="res://src/data/Player.tres" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://j6ptlgfpxopd" path="res://src/scripts/shop.gd" id="3_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://cgp1ljcfboph3" path="res://scenes/shop_item.tscn" id="4_o6xl0"]
+[ext_resource type="Script" uid="uid://na1ncclejain" path="res://src/scripts/player_stats.gd" id="5_tbgi4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjgbg"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 300
+corner_radius_top_right = 300
+corner_radius_bottom_right = 300
+corner_radius_bottom_left = 300
+shadow_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
+bg_color = Color(0.205117, 0.205117, 0.205117, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 300
+corner_radius_top_right = 300
+corner_radius_bottom_right = 300
+corner_radius_bottom_left = 300
+shadow_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0wfyh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo1nx"]
+bg_color = Color(0.0728427, 0.0728426, 0.0728427, 1)
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o5qli")
+player = ExtResource("2_0wfyh")
+
+[node name="ButtonArea" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -467.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ButtonArea"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.095679015
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonArea/CenterContainer"]
+custom_minimum_size = Vector2(350, 422)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Score" type="Label" parent="ButtonArea/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+z_index = 100
+clip_contents = true
+custom_minimum_size = Vector2(375, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+text = "0.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+ellipsis_char = "+"
+
+[node name="Container" type="PanelContainer" parent="ButtonArea/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+
+[node name="Button" type="Button" parent="ButtonArea/CenterContainer/VBoxContainer/Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(325, 325)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jjgbg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sugp2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sugp2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_sugp2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0wfyh")
+
+[node name="PanelContainer" type="PanelContainer" parent="ButtonArea/CenterContainer/VBoxContainer/Container"]
+clip_contents = true
+custom_minimum_size = Vector2(375, 375)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tefeu")
+
+[node name="ClickerHolder" type="GridContainer" parent="ButtonArea/CenterContainer/VBoxContainer/Container/PanelContainer" groups=["clicker_area"]]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(375, 375)
+layout_mode = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 9
+
+[node name="ShopPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 682.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bo1nx")
+script = ExtResource("3_tbgi4")
+item_scene = ExtResource("4_o6xl0")
+player = ExtResource("2_0wfyh")
+
+[node name="Label" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 29.0
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "SHOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Shop" type="VBoxContainer" parent="ShopPanel/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerStats" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 682.0
+offset_bottom = 61.0
+script = ExtResource("5_tbgi4")
+player = ExtResource("2_0wfyh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ClickRate" type="Label" parent="PlayerStats/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Click rate: 1.0"
+
+[node name="PassiveRate" type="Label" parent="PlayerStats/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Passive rate: 0.0"
+
+[node name="PassiveMultiplier" type="Label" parent="PlayerStats/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Passive rate: 0.0"
+
+[connection signal="pressed" from="ButtonArea/CenterContainer/VBoxContainer/Container/Button" to="." method="_on_button_pressed"]
